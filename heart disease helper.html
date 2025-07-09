@@ -19,6 +19,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#info">Info</a></li>
                 <li><a href="#Remedies">Remedies&Actions</a></li>
+                <li><a href="#risk-calculator">risk Estimator</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
         </nav>
@@ -52,6 +53,7 @@
 
     <section id="Remedies" class="section info-sections">
         <div class="card">
+
             <h2>Remedies</h2>
             <ul>
                 <li>Eat a heart-healthy diet</li>
@@ -71,16 +73,75 @@
             </ul>
         </div>
     </section>
+     <section id="risk-calculator" class="section">
+    <h2>Heart Disease Risk Estimator</h2>
+    <p>Enter your age and select symptoms to estimate your risk of a heart disease attack.</p>
+    
+    <form id="riskForm" class="section">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required min="1"><br><br>
 
+        <p>Select symptoms you are experiencing:</p>
+        <label><input type="checkbox" name="symptom" value="chest"> Chest Pain</label><br>
+        <label><input type="checkbox" name="symptom" value="breath"> Shortness of Breath</label><br>
+        <label><input type="checkbox" name="symptom" value="fatigue"> Fatigue</label><br>
+        <label><input type="checkbox" name="symptom" value="hand"> Left Hand Pain</label><br><br>
+
+        <button type="button" onclick="calculateRisk()">Calculate Risk</button>
+    </form>
+    <h3 id="riskResult" class="section"></h3>
+   <script>
+function calculateRisk() {
+    const ageInput = document.getElementById("age").value;
+    const age = parseInt(ageInput);
+    const symptoms = document.querySelectorAll('input[name="symptom"]:checked');
+    const result = document.getElementById("riskResult");
+
+    // Validate age input
+    if (!ageInput || isNaN(age) || age <= 0) {
+        alert("Please enter a valid age.");
+        result.innerText = "";
+        return;
+    }
+
+    // Validate symptoms
+    if (symptoms.length === 0) {
+        alert("Please select at least one symptom.");
+        result.innerText = "";
+        return;
+    }
+
+    let symptomCount = symptoms.length;
+    let risk = 0;
+
+    // Basic risk calculation logic
+    if (age < 30) {
+        risk = symptomCount * 10;
+    } else if (age < 50) {
+        risk = symptomCount * 15;
+    } else if (age < 70) {
+        risk = symptomCount * 20;
+    } else {
+        risk = symptomCount * 25;
+    }
+
+    // Cap risk at 100%
+    risk = Math.min(risk, 100);
+
+    result.innerText = `Estimated Heart Disease Risk: ${risk}%`;
+    result.style.color = risk > 60 ? "red" : (risk > 30 ? "orange" : "green");
+}
+</script>
+</section>
     <section id="contact" class="section contact-form">
         <h2>Contact Us</h2>
         <p>If you’re experiencing symptoms or want to learn more, reach out to a healthcare provider.</p>
         <h2>please fill this form</h2>
         <a href="hearthelperform.html" target="_blank" class="form-button">heart helper form </a>
-      
+    </section>
     <footer>
         <p>&copy; 2025 Heart Disease Helper. All rights reserved.</p>
     </footer>
+    
 </body>
 </html>
-
