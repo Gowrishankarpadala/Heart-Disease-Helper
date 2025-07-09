@@ -55,7 +55,7 @@ nav a:hover {
 }
 
 .card {
-    background-color: skyblue;
+    background-color: lightblue;
     padding: 20px;
     flex: 1 1 45%;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -76,9 +76,79 @@ nav a:hover {
     .form-button:hover {
       background-color: #357ae8;
     }
+/* General section styling */
+#risk-calculator {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #f7f9fc;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Heading styles */
+#risk-calculator h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#risk-calculator p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Form styling */
+#riskForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+#riskForm input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#riskForm input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#riskForm button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#riskForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Result styling */
+#riskResult {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 footer {
     background-color: #eee;
     text-align: center;
     padding: 15px;
     margin-top: 40px;
 }
+
