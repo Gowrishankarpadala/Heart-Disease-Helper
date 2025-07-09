@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HEART HELPER SLOT BOOKING FORM</title>
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            padding-top: 20px;
+        }
+
+        form {
+            width: 400px;
+            margin: 30px auto;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        label,
+        p {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+</head>
+<body>
+    <h1>SLOT BOOKING FORM</h1>
+
+    <input type="text" id="name" placeholder="Enter Your Name" required><br><br>
+
+    <input type="email" id="email" placeholder="Type Your Email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required><br><br>
+
+    <input type="tel" id="phone" placeholder="Enter Your phone Number"
+        pattern="[0-9]{10}" maxlength="10" title="Enter the 10 digit phone number" required><br><br>
+
+    <p>Select your Gender from DropDown bar</p>
+    <label for ="Gender">Choose Gender :</label>
+    <select id ="Gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Prefer Not To say">Prefer Not to Say</option>
+    </select><br><br>
+
+    <p>Select Your age from DropDown bar</p>
+    <select  id="ageGroup" name="age">
+        <option value="0 to 20"> between 0 to 20</option>
+        <option value="21 to 40"> between 21 to 40</option>
+        <option value="41 to 60"> between 41 to 60</option>
+        <option value="61 to 80"> between 61 to 80</option>
+    </select>
+
+    <button onclick="saveData()">submit</button>    
+
+    <script>
+        function saveData() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            const phone = document.getElementById("phone").value.trim();
+            const gender = document.getElementById("Gender").value;
+            const age = document.getElementById("ageGroup").value;
+            
+            if (!name || !phone) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+            if (!gmailRegex.test(email)) {
+                alert("Please enter a valid Gmail address (must end with @gmail.com).");
+                return;
+            }
+            if (phone.length !== 10 || !/^\d{10}$/.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+            const user = {
+                name,
+                email,
+                phone,
+                gender,
+                age
+            };
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+        
+            users.push(user);
+        
+            localStorage.setItem("users", JSON.stringify(users));
+        
+            alert("Slot booked successfully!");
+        
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("Gender").value = "Male";
+            document.getElementById("ageGroup").value = "0 to 20";
+        }
+    </script>
+</body>
+</html>
